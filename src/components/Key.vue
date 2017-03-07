@@ -1,5 +1,8 @@
 <template>
-  <div class="key" v-on:click='freqChange'></div>
+  <div
+    class="key"
+    v-on:mousedown='freqChange'
+    v-on:mouseup='stop'></div>
 </template>
 
 <script>
@@ -9,6 +12,9 @@
     methods: {
       freqChange () {
         this.$emit('freqChange', this.note)
+      },
+      stop () {
+        this.$emit('stop')
       }
     }
   }

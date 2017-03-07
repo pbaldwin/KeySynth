@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <keyboard v-bind:scale="scale"></keyboard>
+    <keyboard
+      v-bind:scale="scale"
+      v-on:playnote="play"
+      v-on:stopnote="stop"></keyboard>
   </div>
 </template>
 
@@ -8,6 +11,7 @@
 import Consts from './utils/consts'
 import scaleMaker from './utils/scale-maker'
 import Keyboard from './components/Keyboard.vue'
+import synth from './synth'
 
 let state = {
   tonic: Consts.tonics['c'],
@@ -19,6 +23,14 @@ export default {
   name: 'app',
   components: {
     Keyboard
+  },
+  methods: {
+    play (f) {
+      synth.play(f)
+    },
+    stop () {
+      synth.stop()
+    }
   },
   data () {
     return state

@@ -3,7 +3,8 @@
     <key v-for="note in scale"
       :key="note"
       v-bind:note="note * multiplier"
-      v-on:freqChange="playnote">
+      v-on:freqChange="playnote"
+      v-on:stop="stop">
     </key>
   </div>
 </template>
@@ -18,7 +19,10 @@
     },
     methods: {
       playnote (f) {
-        console.log(`Playing ${f}`)
+        this.$emit('playnote', f)
+      },
+      stop () {
+        this.$emit('stopnote')
       }
     },
     props: ['scale'],
