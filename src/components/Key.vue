@@ -1,5 +1,5 @@
 <template>
-  <div class="key" v-on:click='play'></div>
+  <div class="key" v-on:click='freqChange'></div>
 </template>
 
 <script>
@@ -7,18 +7,27 @@
     name: 'Key',
     props: ['note'],
     methods: {
-      play () {
-        this.$emit('play', this.note)
+      freqChange () {
+        this.$emit('freqChange', this.note)
       }
     }
   }
 </script>
 
-<style scoped>
+<style lang="sass" scoped>
+  $color: hsl(45, 76%, 60%);
+
   .key {
     width: 0;
     flex-grow: 1;
     margin: 4px;
-    background-color: hsl(45, 76%, 60%);
+    border-radius: 1vw;
+    border: 2px solid $color;
+
+    transition: background-color .25s ease;
+
+    &:active {
+      background-color: $color;
+    }
   }
 </style>

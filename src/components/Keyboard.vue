@@ -3,14 +3,13 @@
     <key v-for="note in scale"
       :key="note"
       v-bind:note="note * multiplier"
-      v-on:play="playnote">
+      v-on:freqChange="playnote">
     </key>
   </div>
 </template>
 
 <script>
   import Key from './Key.vue'
-  import Consts from '../utils/Consts'
 
   export default {
     name: 'keyboard',
@@ -22,10 +21,10 @@
         console.log(`Playing ${f}`)
       }
     },
+    props: ['scale'],
     data () {
       return {
-        multiplier: 1,
-        scale: Consts.scales.chromatic
+        multiplier: 1
       }
     }
   }
@@ -36,6 +35,5 @@
     display: flex;
     height: 20vh;
     width: 100vw;
-    background-color: #000;
   }
 </style>
